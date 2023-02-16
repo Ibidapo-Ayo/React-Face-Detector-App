@@ -9,7 +9,8 @@ module.exports = {
       'xl': '1440px',
     },
     colors: {
-      'blue': "#2F06B9",
+      'blue': "#2F06B999",
+      'white': "#fff",
     },
     extend: {},
   },

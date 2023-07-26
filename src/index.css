@@ -6,10 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background-image: url('./components/images/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; 
+   
 }
 .particles{
     position: fixed;
@@ -17,5 +14,8 @@ body{
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -2;
+    z-index: -1;
+}
+.banner{
+   
 }

@@ -6,34 +6,35 @@ import Banner from "./components/Banner";
 import Detector from "./components/Detector";
 import Socials from "./components/Socials";
 import "./components/stylesheet/styles.css";
+import WordToxicity from "./components/WordToxicity";
 function App() {
-  const particlesInit = useCallback(async engine => {
-    console.log(engine);
-    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
-    await loadFull(engine);
-  }, []);
-
-  const particlesLoaded = useCallback(async container => {
-    await console.log(container);
-  }, []);
+   const particlesInit = useCallback(async engine => {
+      console.log(engine);
+      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+      // starting from v2 you can add only the features you need reducing the bundle size
+      await loadFull(engine);
+    }, []);
+  
+    const particlesLoaded = useCallback(async container => {
+      await console.log(container);
+    }, []);
   return (
     <div>
-      <Particles 
+ <Particles 
       className="particles"
       id="tsparticles"
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
        
-        // background: {
-        //     color: {
-        //         value: "rgba(0,0,0,.5)",
-        //         blur: 5
+        background: {
+            color: {
+                value: "#fff",
+                blur: 5
                
-        //     },
-        // },
+            },
+        },
         fpsLimit: 120,
         interactivity: {
             events: {
@@ -52,17 +53,17 @@ function App() {
                     quantity: 4,
                 },
                 repulse: {
-                    distance: 200,
+                    distance: 500,
                     duration: 0.4,
                 },
             },
         },
         particles: {
             color: {
-                value: "#ffffff",
+                value: "#2F06B999",
             },
             links: {
-                color: "#ffffff",
+                color: "#2F06B999",
                 distance: 150,
                 enable: true,
                 opacity: 0.5,
@@ -78,34 +79,36 @@ function App() {
                     default: "bounce",
                 },
                 random: false,
-                speed: 3,
+                speed: 1,
                 straight: false,
             },
             number: {
                 density: {
                     enable: true,
-                    area: 800,
+                    area: 300,
                 },
-                value: 80,
+                value: 30,
             },
             opacity: {
-                value: 0.5,
+                value: 0.2,
             },
             shape: {
                 type: "circle",
             },
             size: {
-                value: { min: 1, max: 5 },
+                value: { min: 1, max: 3 },
             },
         },
         detectRetina: true,
     }}
       />
       <Navbar />
-      <div className="container">
+      <div>
         <Banner />
         <Detector />
+        {/* <WordToxicity /> */}
       </div>
+      
       <Socials />
     </div>
   );

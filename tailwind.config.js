@@ -1,18 +1,18 @@
-
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      'sm': '480px',
-      'md': '768px',
-      'lg': '976px',
-      'xl': '1440px',
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px"
     },
     colors: {
-      'blue': "#2F06B999",
-      'white': "#fff",
+      blue: "#2F06B999",
+      white: "#fff",
+      red: "#ff0000"
     },
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};

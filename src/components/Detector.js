@@ -6,6 +6,10 @@ function Detector() {
   const [ImageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
   const [box, setBox] = useState({});
+
+  // Regex to check for the Validity of the Url
+  const checkForUrlValidity = /^(ftp|http|https):\/\/[^ "]+$/;
+
   const handleInput = e => {
     e.preventDefault();
     setInput(e.target.value);
@@ -53,61 +57,68 @@ function Detector() {
     return {
       leftCol: imageFace.left_col * width,
       topRow: imageFace.top_row * height,
-      rightCol: width - (imageFace.right_col * width),
-      bottomRow: height - (imageFace.bottom_row * height)
+      rightCol: width - imageFace.right_col * width,
+      bottomRow: height - imageFace.bottom_row * height
     };
   };
 
-  const displayFaceBox = (box) =>{
-    // console.log(box)
-    setBox(box)
-  }
+  const displayFaceBox = box => {
+    setBox(box);
+  };
   const handleImageUrl = e => {
-    if (input === "") {
+    if (input.trim() === "") {
       setError("Please enter a valid image url");
     } else {
-      setError("");
-      setImageUrl(input);
-      fetch(
-        "https://api.clarifai.com/v2/models/" +
-          MODEL_ID +
-          "/versions/" +
-          MODEL_VERSION_ID +
-          "/outputs",
-        requestOptions
-      )
-        .then(response => response.json())
-        .then(result => displayFaceBox(calculateFace(result)))
-        .catch(error => console.log("error", error));
+      if (checkForUrlValidity.test(input)) {
+        setError("");
+        setImageUrl(input);
+        fetch(
+          "https://api.clarifai.com/v2/models/" +
+            MODEL_ID +
+            "/versions/" +
+            MODEL_VERSION_ID +
+            "/outputs",
+          requestOptions
+        )
+          .then(response => response.json())
+          .then(result => displayFaceBox(calculateFace(result)))
+          .catch(error => console.log("error", error));
+      } else {
+        setError("Please enter a valid image url");
+      }
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-6 md:flex-row">
-      <div className="md:w-1/2 flex flex-col space-y-3 -mt-10">
+    <div className="flex flex-col items-center justify-center space-y-6 md:flex-row md:space-x-5 px-10 md:px-20 w-full">
+      <div className="w-100 md:w-1/2 flex flex-col space-y-3 -mt-10">
         <p className="text-center md:text-left font-[300]">
           Enter image url to detect face
         </p>
         <p className="text-center text-red font-size md:text-left font-[300]">
-          Due to to voluminious request, kindly click the detect button twice to get accurate detection
+          Due to to voluminious request, kindly click the detect button twice to
+          get accurate detection
         </p>
 
-        <div>
+        <div className="w-100 flex flex-col items-center justify-center space-y-5">
           <input
             type="url"
             value={input}
             onChange={handleInput}
             placeholder="Enter the url of the image file"
-            className="border p-3 md:w-[500px] w-100"
+            className="border p-3 w-full"
           />
-          <button className="bg-blue p-3 text-white" onClick={handleImageUrl}>
+          <button
+            className="bg-blue p-3 text-white w-full"
+            onClick={handleImageUrl}
+          >
             Detect Face
           </button>
         </div>
         <p className="text-red error">{error}</p>
       </div>
 
-      <div className="w-1/5">
+      <div className="w-100 md:w-1/5">
         <div className="shadow-2xl flex flex-col items-center justify-center w-[400px] h-[400px] bg-white">
           <FaceRecognition box={box} ImageUrl={ImageUrl} />
         </div>

@@ -4,7 +4,7 @@ This is a simple Face detector app developed using React JS(A Javascript Library
 
 ## Preview the App
 
-Preview https://reactfacedetector.netlify.app/
+Preview <a href="https://reactfacedetector.netlify.app/">here</a>
 
 ## How The App works
 1. Input the Image URL you want to detect face inside

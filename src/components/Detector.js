@@ -48,6 +48,7 @@ function Detector() {
     },
     body: raw
   };
+
   const calculateFace = data => {
     const imageFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById("inputimage");
@@ -97,7 +98,7 @@ function Detector() {
         </p>
         <p className="text-center text-red font-size md:text-left font-[300]">
           Due to to voluminious request, kindly click the detect button twice to
-          get accurate detection
+          get accurate detection.
         </p>
 
         <div className="w-100 flex flex-col items-center justify-center space-y-5">

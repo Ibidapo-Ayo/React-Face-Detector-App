@@ -104,7 +104,6 @@ function App() {
       <div>
         <Banner />
         <Detector />
-        {/* <WordToxicity /> */}
       </div>
 
       <Socials />

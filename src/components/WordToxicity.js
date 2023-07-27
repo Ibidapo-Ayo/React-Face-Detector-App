@@ -7,7 +7,7 @@ function WordToxicity() {
     setText(e.target.value);
   };
   const CheckWordToxicity = () => {
-    if (text.value === "") {
+    if (text.value.trim() === "") {
       alert("No text found");
     } else {
       const PAT = "21f5ac27365c4518bbec2b1af47b326a";
@@ -99,9 +99,11 @@ function WordToxicity() {
                 <p>{data.name}</p>
                 <div className="w-full h-5 ">
                   <div
-                    className={`w-[${Math.round(data.value * 100)}] h-5 bg-blue`}
+                    className={`w-[${Math.round(
+                      data.value * 100
+                    )}] h-5 bg-blue`}
                   >
-                  <p className="text-white">{Math.round(data.value * 100)}</p>
+                    <p className="text-white">{Math.round(data.value * 100)}</p>
                   </div>
                 </div>
               </div>
